@@ -15,8 +15,20 @@ var server = http.createServer(function(request, response) {
         'content-type': 'text/html;charset:utf-8'
     });
 	//读取路径为根目录下的index.html
-    response.write(fs.readFileSync(path.resolve(__dirname,"index.html")));
-    response.end();
+	let urlPath = request.url;
+	
+	switch(urlPath){
+		case '/':
+			response.write(fs.readFileSync(path.resolve(__dirname,"index.html")));
+			response.end();
+		break;
+		
+		case '/home':
+			response.write(fs.readFileSync(path.resolve(__dirname,"home.html")));
+			response.end();
+		break;
+	}
+    
 })
 
 console.log(server.url);
@@ -30,5 +42,6 @@ server.on('error',(err)=>{
 })
 
 server.listen({host:Host,port:Port}, function() {
-    console.log('端口号localhost:' + server.address().port)
+	// console.log(server.address())
+    console.log('端口号'+ server.address().address + ':' + server.address().port)
 });
