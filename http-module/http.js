@@ -27,6 +27,10 @@ var server = http.createServer(function(request, response) {
 			response.write(fs.readFileSync(path.resolve(__dirname,"home.html")));
 			response.end();
 		break;
+		
+		default:
+			response.write(fs.readFileSync(path.resolve(__dirname,"index.html")));
+			response.end();
 	}
     
 })
