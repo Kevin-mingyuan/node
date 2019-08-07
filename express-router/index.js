@@ -2,6 +2,8 @@ const express = require("express");
 const app = express();
 const apiRoute = express.Router();
 const bodyParser = require('body-parser');
+const Host = '14.120.5.57' || 'localost'; //本地服务器地址
+const Port = '8080'; //端口号
 
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({
@@ -194,7 +196,15 @@ apiRoute.post("/register",(req,res)=>{
 });
 
 
-app.listen(5000,(err)=>{
+// app.listen(5000,(err)=>{
+//     if(err){
+//         console.log(err);
+//     }else{
+//         console.log('open port 5000');
+//     };
+// });
+
+app.listen(Port,Host,(err)=>{
     if(err){
         console.log(err);
     }else{
